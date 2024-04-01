@@ -17,15 +17,43 @@ public class TicTacToe implements Game<TicTacToe> {
      */
     public static void main(String[] args) {
         // NOTE the behavior of the game to be run will be based on the TicTacToe instance field: random.
-        State<TicTacToe> state = new TicTacToe().runGame();
-        if (state.winner().isPresent()) System.out.println("TicTacToe: winner is: " + state.winner().get());
-        else System.out.println("TicTacToe: draw");
 
-        TicTacToeState ticTacToeState = (TicTacToeState) state;
-        Position position = ticTacToeState.position();
-        System.out.println("Current Position:\n" + position.render());
+        int[] testArrays = new int[]{500, 1000, 2000, 4000};
+        Random random = new Random();
+        long seed = 0;
 
-    }
+        for (int i = 0; i < testArrays.length; i++) {
+
+            // number of runs
+            int n = testArrays[i];
+            int player0win = 0;
+            int player1win = 0;
+            int opener = -1;
+
+            for (int j = 0; j < n; j++) {
+                // test the behavior of the game with random and seed.
+                State<TicTacToe> state = new TicTacToe().runGame();
+                opener = state.game().opener();
+                if (state.winner().isPresent()) {
+                    if (state.winner().get() == 1) {
+                        player1win++;
+                    } else {
+                        player0win++;
+                    }
+                    // display the result
+                    TicTacToeState ticTacToeState = (TicTacToeState) state;
+                    Position position = ticTacToeState.position();
+
+                } else {
+                    // display the result
+                    TicTacToeState ticTacToeState = (TicTacToeState) state;
+                    Position position = ticTacToeState.position();
+                }
+            }
+            System.out.printf("Total games: %d, opener: %d, player 0 wins %d, player 1 wins %d, draws %d\n", n, opener, player0win, player1win, n - player1win - player0win);
+        }
+
+        }
 
     public static final int X = 1;
     public static final int O = 0;
