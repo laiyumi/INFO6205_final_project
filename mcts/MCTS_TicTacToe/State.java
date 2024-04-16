@@ -10,7 +10,7 @@ public class State {
     private double winScore;
 
     public State() {
-        board = new Board();
+        board = new Board(6,7);
     }
 
     public State(State state) {

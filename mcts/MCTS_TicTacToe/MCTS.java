@@ -4,37 +4,18 @@ import java.util.List;
 
 public class MCTS {
     private static final int WIN_SCORE = 1;
-    private int level;
     private int opponent;
 
-    public MCTS() {
-        this.level = 3;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    private int getMillisForCurrentLevel() {
-        return 2 * (this.level - 1) + 1;
-    }
-
-    private static final int SIMULATION_COUNT = 1000;  // higher simulation results in more draws
+    private static final int SIMULATION_COUNT = 2000;  // higher simulation results in more draws
 
     // base on the current state, find the next move for the player
     public Board findNextMove(Board board, int playerNo) {
-        long start = System.currentTimeMillis();
-        long end = start + 60 * getMillisForCurrentLevel();
 
-        opponent = 3 - playerNo;
+        playerNo = 3 - playerNo;
         Tree tree = new Tree();
         Node rootNode = tree.getRoot();
         rootNode.getState().setBoard(board);
-        rootNode.getState().setPlayerNo(opponent);
+        rootNode.getState().setPlayerNo(playerNo);
 
         for (int i = 0; i < SIMULATION_COUNT; i++) {
             // step 1 - Selection
