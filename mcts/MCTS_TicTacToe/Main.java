@@ -1,7 +1,7 @@
 package edu.neu.coe.info6205.mcts.MCTS_TicTacToe;
 
 public class Main {
-    public static final int NUM_GAMES = 5;
+    public static final int NUM_GAMES = 1;
 
     public static void main(String[] args) {
 
@@ -22,8 +22,8 @@ public class Main {
             for (int i = 0; i < totalMoves; i++) {
 
                 board = mcts.findNextMove(board, player);
-//                System.out.println("move: " + i);
-//                board.printBoard();
+                System.out.println("move: " + i);
+                board.printBoard();
 
                 if (board.checkStatus() != Board.IN_PROGRESS) {
                     break;

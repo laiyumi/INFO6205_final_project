@@ -1,16 +1,23 @@
 package edu.neu.coe.info6205.mcts.MCTS_TicTacToe;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class MCTS {
     private static final int WIN_SCORE = 1;
     private int opponent;
 
-    private static final int SIMULATION_COUNT = 2000;  // higher simulation results in more draws
+    private static final int SIMULATION_COUNT = 10;  // higher simulation results in more draws
 
     // base on the current state, find the next move for the player
     public Board findNextMove(Board board, int playerNo) {
 
+        // check if the player is human player(2)
+        if(playerNo == 2){
+            // get the position of the human player
+            Scanner input = new Scanner(System.in);
+
+        }
         playerNo = 3 - playerNo;
         Tree tree = new Tree();
         Node rootNode = tree.getRoot();
@@ -32,6 +39,8 @@ public class MCTS {
             int playoutResult = simulateRandomPlayout(nodeToExplore);
             // step 4 - Update
             backPropogation(nodeToExplore, playoutResult);
+            System.out.println("wins rate of the selected node: " + nodeToExplore.getState().getVisitCount());
+
         }
 
         Node winnerNode = rootNode.getChildWithMaxScore();

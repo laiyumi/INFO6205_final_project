@@ -107,73 +107,27 @@ public class Board {
     public void setBoardValues(int[][] boardValues) {
         this.boardValues = boardValues;
     }
-//
-//    public int checkStatus() {
-//        int boardSize = boardValues.length;
-//        int maxIndex = boardSize - 1;
-//        int[] diag1 = new int[boardSize];
-//        int[] diag2 = new int[boardSize];
-//
-//        for (int i = 0; i < boardSize; i++) {
-//            int[] row = boardValues[i];
-//            int[] col = new int[boardSize];
-//            for (int j = 0; j < boardSize; j++) {
-//                col[j] = boardValues[j][i];
-//            }
-//
-//            int checkRowForWin = checkForWin(row);
-//            if(checkRowForWin!=0)
-//                return checkRowForWin;
-//
-//            int checkColForWin = checkForWin(col);
-//            if(checkColForWin!=0)
-//                return checkColForWin;
-//
-//            diag1[i] = boardValues[i][i];
-//            diag2[i] = boardValues[maxIndex - i][i];
-//        }
-//
-//        int checkDia1gForWin = checkForWin(diag1);
-//        if(checkDia1gForWin!=0)
-//            return checkDia1gForWin;
-//
-//        int checkDiag2ForWin = checkForWin(diag2);
-//        if(checkDiag2ForWin!=0)
-//            return checkDiag2ForWin;
-//
-//        if (getEmptyPositions().size() > 0)
-//            return IN_PROGRESS;
-//        else
-//            return DRAW;
-//    }
-
-
-    private int checkForWin(int[] row) {
-        boolean isEqual = true;
-        int size = row.length;
-        int previous = row[0];
-        for (int i = 0; i < size; i++) {
-            if (previous != row[i]) {
-                isEqual = false;
-                break;
-            }
-            previous = row[i];
-        }
-        if(isEqual)
-            return previous;
-        else
-            return 0;
-    }
 
     public void printBoard() {
-        int size = this.boardValues.length;
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        int rowSize = this.boardValues.length;      // number of rows
+        int columnSize = this.boardValues[0].length;  // number of columns
+
+        // Print column numbers
+        for (int column = 0; column < columnSize; column++) {
+            System.out.print(column + " ");
+        }
+
+        System.out.println("\n--------------");
+
+        // Print board values
+        for (int i = 0; i < rowSize; i++) {
+            for (int j = 0; j < columnSize; j++) {
                 System.out.print(boardValues[i][j] + " ");
             }
             System.out.println();
         }
     }
+
 
     // get the valid positions
     public List<Position> getEmptyPositions() {
