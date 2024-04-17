@@ -166,10 +166,18 @@ public class Board {
     }
 
     public void printBoard() {
-        int size = this.boardValues.length;
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                System.out.print(boardValues[i][j] + " ");
+        int size_x = this.boardValues.length;
+        int size_y = this.boardValues[0].length;
+        for (int i = 0; i < size_x; i++) {
+            for (int j = 0; j < size_y; j++) {
+                //System.out.print(boardValues[i][j] + " ");
+                if (boardValues[i][j] == 0) {
+                    System.out.print(". ");  // Print a dot for empty spaces
+                } else if (boardValues[i][j] == P1) {
+                    System.out.print("X ");  // Print x for Player 1
+                } else if (boardValues[i][j] == P2) {
+                    System.out.print("O ");  // Print o for Player 2
+                }
             }
             System.out.println();
         }

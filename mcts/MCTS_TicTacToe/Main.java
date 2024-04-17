@@ -1,9 +1,13 @@
 package edu.neu.coe.info6205.mcts.MCTS_TicTacToe;
 
+import java.util.Scanner;
+
 public class Main {
-    public static final int NUM_GAMES = 5;
+    public static final int NUM_GAMES = 2;
 
     public static void main(String[] args) {
+
+        boolean human_player = true;
 
         int p1Wins = 0;
         int p2Wins = 0;
@@ -21,9 +25,31 @@ public class Main {
             // use mcts to do the move
             for (int i = 0; i < totalMoves; i++) {
 
-                board = mcts.findNextMove(board, player);
-//                System.out.println("move: " + i);
-//                board.printBoard();
+                if (player == Board.P1) {
+                    board = mcts.findNextMove(board, player);
+                    //System.out.println("move: " + i);
+                    System.out.println("\n" + "Board after move: " + i);
+                    System.out.println("0 1 2 3 4 5 6");
+                    board.printBoard();
+                }
+                else {
+                    if (human_player) {
+                        while (true) {
+                            System.out.println("Enter column number (0-6): ");
+                            Scanner scanner = new Scanner(System.in);
+                            int num = scanner.nextInt();
+                            Position p = new Position(0, num);
+                            try {
+                                board.performMove(player, p);
+                                break;
+                            } catch (Exception e) {
+                                System.out.println("Invalid move, try again");
+                            }
+                        }
+                        //System.out.println("------------------");
+                        board.printBoard();
+                    }
+                }
 
                 if (board.checkStatus() != Board.IN_PROGRESS) {
                     break;
@@ -51,7 +77,7 @@ public class Main {
             }
             System.out.println("final board");
             board.printBoard();
-            System.out.println("-----");
+            System.out.println("-------------");
 
         }
 
