@@ -6,7 +6,7 @@ public class MCTS {
     private static final int WIN_SCORE = 1;
     private int opponent;
 
-    private static final int SIMULATION_COUNT = 2000;  // higher simulation results in more draws
+    private static final int SIMULATION_COUNT = 100;  // higher simulation results in more draws
 
     // base on the current state, find the next move for the player
     public Board findNextMove(Board board, int playerNo) {
