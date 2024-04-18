@@ -1,4 +1,4 @@
-package mcts.MCTS_TicTacToe;
+package edu.neu.coe.info6205.mcts.MCTS_TicTacToe;
 
 import java.util.Map;
 import java.util.Scanner;

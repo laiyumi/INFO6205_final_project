@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Board {
     int[][] boardValues;
-    int totalMoves;
+    int totalMoves = 0;
 
     public static final int WINNING_COUNT = 4;   // Connect Four
 
@@ -198,7 +198,19 @@ public class Board {
         return emptyPositions;
     }
 
+    public int getMoveCount() {
+        return totalMoves;
+    }
 
+    private void countTotalMoves() {
+        for (int[] row : boardValues) {
+            for (int cell : row) {
+                if (cell != 0) {
+                    totalMoves++;
+                }
+            }
+        }
+    }
 
     public void printStatus() {
         switch (this.checkStatus()) {
