@@ -1,8 +1,8 @@
 package edu.neu.coe.info6205.mcts.test;
 
-import edu.neu.coe.info6205.mcts.MCTS_TicTacToe.Board;
-import edu.neu.coe.info6205.mcts.MCTS_TicTacToe.MCTS;
-import edu.neu.coe.info6205.mcts.MCTS_TicTacToe.Position;
+import edu.neu.coe.info6205.mcts.MCTS_Connect4.Board;
+import edu.neu.coe.info6205.mcts.MCTS_Connect4.MCTS;
+import edu.neu.coe.info6205.mcts.MCTS_Connect4.Position;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
