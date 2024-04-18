@@ -3,16 +3,13 @@ package edu.neu.coe.info6205.mcts.test;
 import edu.neu.coe.info6205.mcts.MCTS_TicTacToe.Board;
 import edu.neu.coe.info6205.mcts.MCTS_TicTacToe.MCTS;
 import edu.neu.coe.info6205.mcts.MCTS_TicTacToe.Position;
-import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
-public class test {
+public class Test {
     @Test
     public void testMCTSFindNextMoveOnEmptyBoard() {
         Board board = new Board(6, 7);
