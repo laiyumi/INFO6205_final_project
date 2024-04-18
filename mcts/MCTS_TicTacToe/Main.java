@@ -47,8 +47,8 @@ public class Main {
                         try {
                             board.performMove(player, p);
                             break;
-                            System.out.println("Invalid move, try again");
                         } catch (Exception e) {
+                            System.out.println("Invalid move, try again");
                         }
                     }
                     board.printBoard();
