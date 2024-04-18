@@ -35,9 +35,45 @@ public class MCTS {
         }
 
         Node winnerNode = rootNode.getChildWithMaxScore();
+        printBestRate(winnerNode, playerNo);
         tree.setRoot(winnerNode);
         return winnerNode.getState().getBoard();
     }
+
+    private void printBestRate(Node winnerNode, int playerNo){
+        System.out.println("Player" + (3 - playerNo) + "'s winning percentage of the best choice:");
+        System.out.println(winnerNode.getState().getWinScore() * 100 / winnerNode.getState().getVisitCount() + "%");
+    }
+
+    public double findNextMoveWinRate(Board board, int playerNo) {
+
+        playerNo = 3 - playerNo;
+        Tree tree = new Tree();
+        Node rootNode = tree.getRoot();
+        rootNode.getState().setBoard(board);
+        rootNode.getState().setPlayerNo(playerNo);
+
+        for (int i = 0; i < SIMULATION_COUNT; i++) {
+            // step 1 - Selection
+            Node promisingNode = selectPromisingNode(rootNode);
+            // step 2 - Expansion
+            if (promisingNode.getState().getBoard().checkStatus() == Board.IN_PROGRESS)
+                expandNode(promisingNode);
+
+            // step 3 - Simulation
+            Node nodeToExplore = promisingNode;
+            if (promisingNode.getChildArray().size() > 0) {
+                nodeToExplore = promisingNode.getRandomChildNode();
+            }
+            int playoutResult = simulateRandomPlayout(nodeToExplore);
+            // step 4 - Update
+            backPropogation(nodeToExplore, playoutResult);
+        }
+
+        Node winnerNode = rootNode.getChildWithMaxScore();
+        return (winnerNode.getState().getWinScore() * 100 / winnerNode.getState().getVisitCount());
+    }
+
 
     // use UCT to select the child node
     private Node selectPromisingNode(Node rootNode) {

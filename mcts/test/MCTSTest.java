@@ -106,4 +106,24 @@ public class MCTSTest {
         assertEquals(Board.P2, winStatus);
     }
 
+    @Test
+    public void testWinningMoveWith100PercentWinRate() {
+        // Set up the board in a nearly winning position for Player 1
+        int[][] preSetBoard = {
+                {0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0},
+                {2, 0, 0, 0, 0, 0, 0},
+                {2, 0, 0, 0, 0, 0, 0},
+                {2, 1, 0, 1, 1, 0, 0}
+        };
+        Board board = new Board(preSetBoard);
+        MCTS mcts = new MCTS();
+
+
+        double winRate = mcts.findNextMoveWinRate(board, Board.P1);
+
+        assertEquals(100.0, winRate);
+    }
+
 }

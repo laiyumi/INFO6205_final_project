@@ -35,10 +35,11 @@ public class Main {
 
                     long duration = TimeUnit.NANOSECONDS.toMillis(endTime - startTime);
                     //System.out.println("move: " + i);
-                    System.out.println("\n" + "Board after move: " + i);
+                    System.out.println("\n" + "Board after move: " + i );
                     System.out.println("0 1 2 3 4 5 6");
                     board.printBoard();
                     System.out.println("Time taken for move: " + duration + " ms");
+                    System.out.println();
                 }
                 else {
                     if (human_player) {
